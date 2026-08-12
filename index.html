@@ -263,17 +263,6 @@ button{
 </div>
 
 <script>
-function nomorStruk(){
-  let waktu=new Date();
-  let angka=
-    waktu.getFullYear().toString().slice(-2)+
-    String(waktu.getMonth()+1).padStart(2,'0')+
-    String(waktu.getDate()).padStart(2,'0')+
-    String(waktu.getHours()).padStart(2,'0')+
-    String(waktu.getMinutes()).padStart(2,'0')+
-    String(waktu.getSeconds()).padStart(2,'0');
-  return "BK-"+angka;
-}
 
 document.getElementById("no").value = "";
 
