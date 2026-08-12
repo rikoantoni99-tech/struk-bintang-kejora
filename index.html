@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0b5d3b">
+<title>Struk Bintang Kejora</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f1f5f3;
+  color:#222;
+}
+.container{
+  max-width:650px;
+  margin:auto;
+  padding:20px;
+}
+.header{
+  background:#0b5d3b;
+  color:white;
+  padding:22px;
+  border-radius:16px;
+  text-align:center;
+  margin-bottom:18px;
+}
+.logo{
+  width:70px;
+  height:70px;
+  margin:auto;
+  border-radius:50%;
+  background:white;
+  color:#0b5d3b;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:34px;
+  font-weight:bold;
+}
+.header h1{margin:10px 0 5px;font-size:24px}
+.header p{margin:0}
+.card{
+  background:white;
+  padding:20px;
+  border-radius:16px;
+  box-shadow:0 3px 12px #0001;
+  margin-bottom:18px;
+}
+label{
+  display:block;
+  font-weight:bold;
+  margin-top:12px;
+  margin-bottom:5px;
+}
+input{
+  width:100%;
+  padding:13px;
+  border:1px solid #ccc;
+  border-radius:9px;
+  font-size:16px;
+}
+button{
+  width:100%;
+  padding:14px;
+  border:0;
+  border-radius:10px;
+  margin-top:18px;
+  font-size:17px;
+  font-weight:bold;
+  cursor:pointer;
+}
+.btn{
+  background:#0b5d3b;
+  color:white;
+}
+.btn2{
+  background:#e9ecef;
+  color:#222;
+}
+.receipt{
+  border:1px dashed #777;
+  padding:20px;
+  background:white;
+}
+.receipt h2{
+  text-align:center;
+  margin:0 0 4px;
+}
+.receipt .center{text-align:center}
+.line{
+  border-top:1px dashed #777;
+  margin:15px 0;
+}
+.row{
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+  margin:8px 0;
+}
+.total{
+  font-size:22px;
+  font-weight:bold;
+}
+.small{
+  font-size:12px;
+  color:#555;
+  text-align:center;
+  margin-top:18px;
+}
+@media print{
+  body{background:white}
+  .form,.header{display:none}
+  .container{padding:0;max-width:100%}
+  .card{box-shadow:none;margin:0}
+  .receipt{border:1px dashed #000}
+  .no-print{display:none}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+  <div class="logo">BK</div>
+  <h1>KOPERASI BINTANG KEJORA</h1>
+  <p>STRUK TAGIHAN TAXI</p>
+</div>
+
+<div class="card form">
+  <h2>Input Tagihan</h2>
+
+  <label>Nomor Struk</label>
+  <input id="no" readonly>
+
+  <label>Nama Penumpang</label>
+  <input id="penumpang" placeholder="Nama penumpang">
+
+  <label>Nama Driver</label>
+  <input id="driver" placeholder="Nama driver">
+
+  <label>No. Kendaraan / Plat</label>
+  <input id="plat" placeholder="Contoh: KB 1234 AB">
+
+  <label>Tanggal</label>
+  <input type="date" id="tanggal">
+
+  <label>Jam</label>
+  <input type="time" id="jam">
+
+  <label>Asal</label>
+  <input id="asal" placeholder="Lokasi penjemputan">
+
+  <label>Tujuan</label>
+  <input id="tujuan" placeholder="Lokasi tujuan">
+
+  <label>Jarak Tempuh (km)</label>
+  <input type="number" id="jarak" placeholder="Contoh: 15">
+
+  <label>Total Tagihan (Rp)</label>
+  <input type="number" id="total" placeholder="Contoh: 50000">
+
+  <button class="btn" onclick="buatStruk()">BUAT STRUK</button>
+</div>
+
+<div class="card">
+  <div class="receipt" id="struk">
+
+    <h2>KOPERASI BINTANG KEJORA</h2>
+    <div class="center">STRUK TAGIHAN TAXI</div>
+
+    <div class="line"></div>
+
+    <div class="row">
+      <span>No. Struk</span>
+      <b id="rno">-</b>
+    </div>
+
+    <div class="row">
+      <span>Tanggal</span>
+      <span id="rtanggal">-</span>
+    </div>
+
+    <div class="row">
+      <span>Jam</span>
+      <span id="rjam">-</span>
+    </div>
+
+    <div class="line"></div>
+
+    <div class="row">
+      <span>Penumpang</span>
+      <b id="rpenumpang">-</b>
+    </div>
+
+    <div class="row">
+      <span>Driver</span>
+      <span id="rdriver">-</span>
+    </div>
+
+    <div class="row">
+      <span>Kendaraan</span>
+      <span id="rplat">-</span>
+    </div>
+
+    <div class="line"></div>
+
+    <div class="row">
+      <span>Asal</span>
+      <span id="rasal">-</span>
+    </div>
+
+    <div class="row">
+      <span>Tujuan</span>
+      <span id="rtujuan">-</span>
+    </div>
+
+    <div class="row">
+      <span>Jarak</span>
+      <span><span id="rjarak">0</span> km</span>
+    </div>
+
+    <div class="line"></div>
+
+    <div class="row total">
+      <span>TOTAL</span>
+      <span id="rtotal">Rp 0</span>
+    </div>
+
+    <div class="small">
+      Terima kasih telah menggunakan layanan<br>
+      Koperasi Bintang Kejora
+    </div>
+
+  </div>
+
+  <button class="btn no-print" onclick="window.print()">
+    🖨️ CETAK STRUK
+  </button>
+
+  <button class="btn2 no-print" onclick="location.reload()">
+    STRUK BARU
+  </button>
+</div>
+
+</div>
+
+<script>
+function nomorStruk(){
+  let waktu=new Date();
+  let angka=
+    waktu.getFullYear().toString().slice(-2)+
+    String(waktu.getMonth()+1).padStart(2,'0')+
+    String(waktu.getDate()).padStart(2,'0')+
+    String(waktu.getHours()).padStart(2,'0')+
+    String(waktu.getMinutes()).padStart(2,'0')+
+    String(waktu.getSeconds()).padStart(2,'0');
+  return "BK-"+angka;
+}
+
+document.getElementById("no").value=nomorStruk();
+
+let sekarang=new Date();
+
+document.getElementById("tanggal").value=
+  sekarang.getFullYear()+"-"+
+  String(sekarang.getMonth()+1).padStart(2,'0')+"-"+
+  String(sekarang.getDate()).padStart(2,'0');
+
+document.getElementById("jam").value=
+  String(sekarang.getHours()).padStart(2,'0')+":"+
+  String(sekarang.getMinutes()).padStart(2,'0');
+
+function rupiah(angka){
+  return "Rp "+Number(angka||0).toLocaleString("id-ID");
+}
+
+function buatStruk(){
+
+  document.getElementById("rno").textContent=
+    document.getElementById("no").value;
+
+  document.getElementById("rpenumpang").textContent=
+    document.getElementById("penumpang").value || "-";
+
+  document.getElementById("rdriver").textContent=
+    document.getElementById("driver").value || "-";
+
+  document.getElementById("rplat").textContent=
+    document.getElementById("plat").value || "-";
+
+  document.getElementById("rtanggal").textContent=
+    document.getElementById("tanggal").value || "-";
+
+  document.getElementById("rjam").textContent=
+    document.getElementById("jam").value || "-";
+
+  document.getElementById("rasal").textContent=
+    document.getElementById("asal").value || "-";
+
+  document.getElementById("rtujuan").textContent=
+    document.getElementById("tujuan").value || "-";
+
+  document.getElementById("rjarak").textContent=
+    document.getElementById("jarak").value || "0";
+
+  document.getElementById("rtotal").textContent=
+    rupiah(document.getElementById("total").value);
+
+  document.getElementById("struk").scrollIntoView({
+    behavior:"smooth"
+  });
+}
+</script>
+
+</body>
+</html>
