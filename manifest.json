@@ -1,0 +1,15 @@
+{
+  "name": "Struk Bintang Kejora",
+  "short_name": "Struk Taxi",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#198754",
+  "icons": [
+    {
+      "src": "logo-koperasi.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}
