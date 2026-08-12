@@ -1,0 +1,1 @@
+# struk-bintang-kejora
